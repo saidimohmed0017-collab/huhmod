@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-T6X8245');</script>
+		<!-- End Google Tag Manager -->
+	<meta name="template" content="cod-mobile-standard"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=100">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta property="og:title" content="Call of Duty Mobile | Home" />
+	<meta name="twitter:title" content="Call of Duty Mobile | Home" />
+	<meta name="twitter:card" content="summary">
+	<meta name="apple-mobile-web-app-title" content="Call of Duty Mobile | Home"/>  
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+	<link rel="icon" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/favicon.ico" />
+	<title>REDEMPTION CENTER - Call of Duty Mobile </title>
+	<link rel="stylesheet" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/css/fonts2.css" />
+	<link rel="stylesheet" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/css/style2.css" />
+	<link rel="stylesheet" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/css/language.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+	<!-- تنسيقات CSS -->
+	<style>
+		.generator-box {
+			background: rgba(18, 18, 18, 0.95) !important;
+			border: 2px solid rgba(255, 204, 0, 0.4) !important;
+			border-radius: 8px;
+			padding: 25px 20px !important;
+			max-width: 480px;
+			margin: 0 auto 30px auto !important;
+			text-align: center;
+			box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(255,204,0,0.05);
+		}
+		.gen-header h3 {
+			color: #ffcc00;
+			font-size: 19px;
+			font-family: 'CallofDuty', sans-serif;
+			margin-bottom: 6px;
+			letter-spacing: 1px;
+		}
+		.gen-header p {
+			color: #b0b0b0;
+			font-size: 12px;
+			margin-bottom: 18px;
+			font-family: sans-serif;
+		}
+		.counter-display {
+			display: none;
+			color: #ffcc00;
+			font-size: 26px;
+			font-family: 'CallofDuty', sans-serif;
+			letter-spacing: 3px;
+			margin: 15px 0;
+			text-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+			background: #0a0a0a;
+			padding: 14px;
+			border: 2px solid #ffcc00;
+			border-radius: 6px;
+		}
+		.result-container {
+			display: none;
+			width: 100%;
+			margin-top: 10px;
+			animation: fadeIn 0.4s ease-in-out;
+		}
+		.generated-code-display {
+			font-size: 22px;
+			color: #ffcc00;
+			background: #0a0a0a;
+			padding: 14px 15px;
+			border: 2px solid #ffcc00;
+			border-radius: 6px;
+			letter-spacing: 2px;
+			font-weight: bold;
+			font-family: monospace;
+			text-align: center;
+			margin-bottom: 12px;
+			box-shadow: inset 0 0 12px rgba(255,204,0,0.3);
+		}
+		
+		/* توحيد أحجام الأزرار */
+		.btn-uniform {
+			display: block;
+			width: 100%;
+			max-width: 100%;
+			margin: 10px auto;
+			padding: 14px 20px;
+			font-family: 'CallofDuty', sans-serif;
+			font-size: 16px;
+			font-weight: bold;
+			text-align: center;
+			border-radius: 6px;
+			letter-spacing: 1px;
+			cursor: pointer;
+			text-decoration: none;
+			transition: 0.2s;
+			box-sizing: border-box;
+		}
+		.btn-copy-custom {
+			background: #ffd103;
+			color: #000;
+			border: none;
+		}
+		.btn-copy-custom:hover {
+			background: #e6b800;
+			transform: scale(1.02);
+		}
+		
+		.btn-use-custom {
+			background-color: #333 !important;
+			color: #777 !important;
+			pointer-events: none;
+			border: 1px solid #444;
+		}
+		.btn-use-custom.active {
+			background-color: #ffd103 !important;
+			color: #000 !important;
+			pointer-events: auto;
+			box-shadow: 0 4px 15px rgba(255, 204, 0, 0.4);
+		}
+		.btn-use-custom.active:hover {
+			background-color: #e6b800 !important;
+			transform: scale(1.02);
+		}
+
+		/* زر اللغات */
+		.floating-lang-container {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			z-index: 99999;
+			background: rgba(18, 18, 18, 0.95);
+			border: 1.5px solid #ffcc00;
+			border-radius: 6px;
+			padding: 4px 10px;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			transition: 0.3s;
+		}
+		.floating-lang-container:hover {
+			border-color: #ffe066;
+			box-shadow: 0 4px 20px rgba(255, 204, 0, 0.4);
+		}
+		.floating-lang-container svg {
+			width: 14px;
+			height: 14px;
+			fill: #ffcc00;
+		}
+		.floating-lang-container select {
+			background: transparent;
+			color: #ffcc00;
+			border: none;
+			font-family: 'CallofDuty', sans-serif;
+			font-size: 12px;
+			font-weight: bold;
+			padding: 2px;
+			cursor: pointer;
+			outline: none;
+		}
+		.floating-lang-container select option {
+			background: #181818;
+			color: #fff;
+			padding: 8px;
+		}
+
+		/* تصميم الفوتر الاحترافي */
+		.activision-footer {
+			background-color: #000;
+			padding: 30px 20px;
+			text-align: center;
+			border-top: 1px solid #222;
+			margin-top: 50px;
+			font-family: sans-serif;
+			width: 100%;
+		}
+		.activision-footer .cod-footer-menu {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 15px;
+			margin-bottom: 25px;
+		}
+		.activision-footer .cod-footer-menu a {
+			color: #b0b0b0;
+			text-decoration: none;
+			font-size: 13px;
+			font-weight: bold;
+			font-family: 'CallofDuty', sans-serif;
+			letter-spacing: 1px;
+			transition: color 0.2s;
+		}
+		.activision-footer .cod-footer-menu a:hover {
+			color: #ffcc00;
+		}
+		.activision-footer .cod-footer-menu span {
+			color: #444;
+			font-size: 14px;
+		}
+		.activision-footer .footer-logo img {
+			height: 35px;
+			margin: 10px 0;
+			filter: brightness(100);
+		}
+		.activision-footer .social-icons {
+			margin-top: 15px;
+			display: flex;
+			justify-content: center;
+			gap: 25px;
+		}
+		.activision-footer .social-icons a svg {
+			width: 24px;
+			height: 24px;
+			fill: #ffffff;
+			transition: fill 0.2s, transform 0.2s;
+		}
+		.activision-footer .social-icons a svg:hover {
+			fill: #ffcc00;
+			transform: scale(1.1);
+		}
+
+		@keyframes fadeIn {
+			from { opacity: 0; transform: translateY(8px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+	</style>
+
+	<link rel="stylesheet" href="https://www.callofduty.com/apps/atvi/global/clientlibs.css" type="text/css">
+    <link rel="stylesheet"
+        href="https://www.callofduty.com/apps/atvi/callofduty/global/components/structure/v2023/cod-footer/clientlibs.css"
+        type="text/css">
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T6X8245"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="wrap test" style="position: relative;">
+	
+	<!-- زر اللغات -->
+	<div class="floating-lang-container">
+		<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+		<select id="langSelector" onchange="changeLanguage(this.value)">
+			<option value="en" selected>English</option>
+			<option value="fr">Français</option>
+			<option value="ar">العربية</option>
+		</select>
+	</div>
+
+	<div id="header"></div>
+	<div class="container">
+	    <div class="head pr">	      
+			<div class="logo"></div>
+			<h1 id="pageTitle">REDEMPTION <br/> CENTER</h1>
+        	
+			<!-- مربع العملية المستطيل -->
+			<div class="code_ct generator-box">
+        		
+				<!-- عنوان ووصف المربع -->
+				<div class="gen-header" id="boxHeader">
+					<h3 id="boxTitle">OFFICIAL REWARD GENERATOR</h3>
+					<p id="boxDesc">Generate your exclusive in-game reward code instantly and redeem it directly.</p>
+				</div>
+
+				<!-- شاشة الأرقام العشوائية (Counter) -->
+				<div class="counter-display" id="counterBox">
+					<span id="randomNumbers">DBVHZBZUF3</span>
+				</div>
+
+				<!-- النتيجة وعرض الكود -->
+				<div class="result-container" id="resultBox">
+					<div class="generated-code-display" id="finalCode">DBVHZBZUF3</div>
+					<button class="btn-uniform btn-copy-custom" id="btnCopy">COPY CODE</button>
+				</div>
+
+				<!-- الأزرار الأساسية الدائمة -->
+				<div id="actions-container">
+					<a href="javascript:void(0)" tabindex="1" class="btn_yellow btn-uniform" id="btn_generate">GENERATE CODE</a>
+					<a href="https://www.callofduty.com/redemption" target="_blank" class="btn-uniform btn-use-custom" id="btn_useCode">USE CODE NOW</a>
+				</div>
+
+        	</div>
+
+			<div class="update-text">
+				<h2 id="updateTitle">Update Required to Redeem</h2>
+				<p id="updateDesc">Check the App Store and update if prompted to avoid losing your code once entered</p>
+			</div>
+			<div class="codm-banner-container">
+				<div class="codm-banner">
+					<a href="http://store.callofdutymobile.com/product/codm?utm_source=activision&utm_medium=website&utm_campaign=codm-redemption-evergreen" target="_blank">
+						<div class="codm-banner-content">
+							<h2 id="bannerTitle">Get the best deals on COD Points</h2>
+							<p id="bannerDesc">Check out the official Call of Duty: Mobile store and get bonus COD Points and discounts.</p>
+							<p id="banner-cta"><span id="bannerBtn">Buy Now</span></p>
+						</div>
+						<div class="codm-banner-img">
+							<img src="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/CODM_Crate_Banner_Crate1.webp" alt="banner" />
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="copyright">
+				<p>&copy;/TM/ 2025 Activision Publishing, Inc. <br/><br/></p>
+				<p id="termsText">Codes redeemable on this Call of Duty: Mobile Redemption Center are valid only for users in territories in which Activision Publishing, Inc. is the publisher of Call of Duty: Mobile. Excludes Brunei, Cambodia, East Timor, Hong Kong, Indonesia, Laos, Macau, Mainland China, Malaysia, Myanmar, Philippines, Singapore, South Korea, Taiwan, Thailand, Vietnam and any regions or territories restricted by applicable laws.</p>
+			</div>
+	    </div>
+    </div>
+</div>
+
+<!-- الفوتر الاحترافي -->
+<footer class="activision-footer">
+	<div class="cod-footer-menu">
+		<a href="#">LEGAL</a><span>|</span>
+		<a href="#">TERMS OF USE</a><span>|</span>
+		<a href="#">PRIVACY POLICY</a><span>|</span>
+		<a href="#">CAREERS</a><span>|</span>
+		<a href="#">COOKIE POLICY</a><span>|</span>
+		<a href="#">SUPPORT</a><span>|</span>
+		<a href="#">CODE OF CONDUCT</a>
+	</div>
+	<div class="footer-logo">
+		<img src="https://i.ibb.co/9P6phHc/Activision-logo.webp" alt="Activision Logo">
+	</div>
+	<div class="social-icons">
+		<a href="#" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.5-10 10 0 5 3.66 9.13 8.44 9.88v-6.99h-2.54v-2.89h2.54V9.79c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.89h-2.33v6.98c4.78-.75 8.44-4.88 8.44-9.88 0-5.5-4.5-10-10-10z"/></svg></a>
+		<a href="#" target="_blank"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+		<a href="#" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+		<a href="#" target="_blank"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+	</div>
+</footer>
+
+<div id="footer"></div>
+
+<!-- سكربت التشغيل السريع -->
+<script>
+	const translations = {
+		en: {
+			title: "REDEMPTION <br/> CENTER",
+			boxTitle: "OFFICIAL REWARD GENERATOR",
+			boxDesc: "Generate your exclusive in-game reward code instantly and redeem it directly.",
+			genBtn: "GENERATE CODE",
+			useBtn: "USE CODE NOW",
+			copyBtn: "COPY CODE",
+			copied: "Copied!",
+			genStateTitle: "GENERATING CODE...",
+			genStateDesc: "Please wait while we extract your unique code from the secure server.",
+			successTitle: "CODE GENERATED SUCCESSFULLY",
+			successDesc: "Your code has been successfully generated!",
+			updateTitle: "Update Required to Redeem",
+			updateDesc: "Check the App Store and update if prompted to avoid losing your code once entered",
+			bannerTitle: "Get the best deals on COD Points",
+			bannerDesc: "Check out the official Call of Duty: Mobile store and get bonus COD Points and discounts.",
+			bannerBtn: "Buy Now"
+		},
+		fr: {
+			title: "CENTRE DE <br/> ÉCHANGE",
+			boxTitle: "GÉNÉRATEUR DE RÉCOMPENSES",
+			boxDesc: "Générez votre code de récompense exclusif instantanément et échangez-le directement.",
+			genBtn: "GÉNÉRER LE CODE",
+			useBtn: "UTILISER LE CODE",
+			copyBtn: "COPIER",
+			copied: "Copié !",
+			genStateTitle: "GÉNÉRATEUR DE CODE...",
+			genStateDesc: "Veuillez patienter pendant que nous extrayons votre code sécurisé.",
+			successTitle: "CODE GÉNÉRÉ AVEC SUCCÈS",
+			successDesc: "Votre code a été généré avec succès !",
+			updateTitle: "Mise à jour requise",
+			updateDesc: "Vérifiez l'App Store pour éviter de perdre votre code.",
+			bannerTitle: "Profitez des meilleures offres de COD Points",
+			bannerDesc: "Visitez la boutique officielle Call of Duty: Mobile pour des bonus et des réductions.",
+			bannerBtn: "Acheter"
+		},
+		ar: {
+			title: "مركز <br/> الاستبدال",
+			boxTitle: "مولد المكافآت الرسمي",
+			boxDesc: "قم بتوليد كود المكافأة الحصري الخاص بك واستخدمه مباشرة.",
+			genBtn: "توليد الكود",
+			useBtn: "استخدام الكود الآن",
+			copyBtn: "نسخ الكود",
+			copied: "تم النسخ!",
+			genStateTitle: "جاري توليد الكود...",
+			genStateDesc: "يرجى الانتظار بينما نقوم باستخراج الكود الخاص بك من الخادم الآمن.",
+			successTitle: "تم توليد الكود بنجاح",
+			successDesc: "تم توليد الكود الخاص بك بنجاح!",
+			updateTitle: "التحديث مطلوب للاستبدال",
+			updateDesc: "تحقق من المتجر وتحديث اللعبة لتجنب فقدان الكود.",
+			bannerTitle: "احصل على أفضل العروض لنقاط COD",
+			bannerDesc: "تفقّد متجر Call of Duty: Mobile الرسمي واحصل على نقاط إضافية وخصومات.",
+			bannerBtn: "اشتري الآن"
+		}
+	};
+
+	function changeLanguage(lang) {
+		let t = translations[lang];
+		document.getElementById('pageTitle').innerHTML = t.title;
+		document.getElementById('boxTitle').innerText = t.boxTitle;
+		document.getElementById('boxDesc').innerText = t.boxDesc;
+		document.getElementById('btn_generate').innerText = t.genBtn;
+		document.getElementById('btn_useCode').innerText = t.useBtn;
+		document.getElementById('btnCopy').innerText = t.copyBtn;
+		document.getElementById('updateTitle').innerText = t.updateTitle;
+		document.getElementById('updateDesc').innerText = t.updateDesc;
+		document.getElementById('bannerTitle').innerText = t.bannerTitle;
+		document.getElementById('bannerDesc').innerText = t.bannerDesc;
+		document.getElementById('bannerBtn').innerText = t.bannerBtn;
+
+		if(lang === 'ar') {
+			document.body.style.direction = 'rtl';
+		} else {
+			document.body.style.direction = 'ltr';
+		}
+	}
+
+	$(document).ready(function() {
+		const rewardCodes = [
+			"DBVHZBZUF3",
+			"BTBUZBZV9K",
+			"BKSUZBZ6VX",
+			"BVVZBZ4JTP",
+			"BFNUZBZ8RE",
+			"BFRVZBZ2MQ",
+			"BGRXZBZ5WN",
+			"BLPUZBZ7YH"
+		];
+
+		$('#btn_generate').on('click', function() {
+			$(this).hide();
+			let lang = document.getElementById('langSelector').value;
+			let t = translations[lang];
+
+			$('#boxHeader h3').text(t.genStateTitle);
+			$('#boxHeader p').text(t.genStateDesc);
+			
+			$('#counterBox').show();
+
+			let finalChosenCode = rewardCodes[Math.floor(Math.random() * rewardCodes.length)];
+
+			let counter = 0;
+			let interval = setInterval(function() {
+				let scrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+				let tempStr = "";
+				for(let i=0; i<10; i++) {
+					tempStr += scrambleChars.charAt(Math.floor(Math.random() * scrambleChars.length));
+				}
+				
+				$('#randomNumbers').text(tempStr);
+				
+				counter++;
+				if (counter > 30) { // سرعة فائقة (تبدأ الأنيماشن فوراً وبدون أي ثقل)
+					clearInterval(interval);
+					$('#counterBox').hide();
+					
+					$('#boxHeader h3').text(t.successTitle);
+					$('#boxHeader p').text(t.successDesc);
+					
+					$('#finalCode').text(finalChosenCode);
+					$('#resultBox').fadeIn();
+					
+					$('#btn_useCode').addClass('active');
+				}
+			}, 50); // سرعة التخربق أسرع بكثير الآن
+		});
+
+		$('#btnCopy').on('click', function() {
+			let codeText = $('#finalCode').text();
+			let lang = document.getElementById('langSelector').value;
+			let t = translations[lang];
+			
+			navigator.clipboard.writeText(codeText).then(() => {
+				let btn = $(this);
+				let originalText = btn.text();
+				btn.text(t.copied).css({'background-color': '#28a745', 'color': '#fff'});
+				setTimeout(() => {
+					btn.text(originalText).css({'background-color': '#ffcc00', 'color': '#000'});
+				}, 2000);
+			});
+		});
+	});
+</script>
+</body>
+</html>
