@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-T6X8245');</script>
+	<!-- End Google Tag Manager -->
+	<meta name="template" content="cod-mobile-standard"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=100">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta property="og:title" content="Call of Duty Mobile | Home" />
+	<meta name="twitter:title" content="Call of Duty Mobile | Home" />
+	<meta name="twitter:card" content="summary">
+	<meta name="apple-mobile-web-app-title" content="Call of Duty Mobile | Home"/>  
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+	<link rel="icon" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/favicon.ico" />
+	<title>REDEMPTION CENTER - Call of Duty Mobile </title>
+	<link rel="stylesheet" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/css/fonts2.css" />
+	<link rel="stylesheet" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/css/style2.css" />
+	<link rel="stylesheet" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/css/language.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://www.callofduty.com/apps/atvi/global/clientlibs.css" type="text/css">
+    <link rel="stylesheet" href="https://www.callofduty.com/apps/atvi/callofduty/global/components/structure/v2023/cod-footer/clientlibs.css" type="text/css">
+		
+	<!-- تنسيقات الشريط الفوقي مع إضافة المسافة العلوية -->
+	<style>
+		/* جعل الحاوية الكبيرة تعتمد العرض النسبي لتركيب الشريط فوق خلفية الصفحة */
+		.wrap.test {
+			position: relative;
+		}
+
+		/* الشريط الداكن يتداخل مع الخلفية الصفراء مع مسافة من الأعلى */
+		.overlay-header-bar {
+			position: absolute;
+			top: 15px; /* مسافة علوية تظهر خلفية الصفحة الصفراء فوق الشريط */
+			left: 0;
+			width: 100%;
+			z-index: 99;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			pointer-events: auto;
+			padding: 0 10px;
+			box-sizing: border-box;
+		}
+
+		.overlay-header-bar img {
+			width: 100%;
+			height: auto;
+			max-height: 55px;
+			object-fit: contain;
+			display: block;
+		}
+
+		/* شاشة التحميل الرمادية الشفافة */
+		#custom-loading {
+			display: none;
+			position: fixed;
+			top: 0; left: 0; width: 100%; height: 100%;
+			background: rgba(0, 0, 0, 0.4);
+			z-index: 99999;
+			justify-content: center;
+			align-items: center;
+		}
+		.cod-spinner-box {
+			background: rgba(30, 35, 45, 0.85);
+			border-radius: 12px;
+			padding: 30px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			box-shadow: 0 0 20px rgba(0,0,0,0.5);
+		}
+		.cod-spinner {
+			width: 45px; height: 45px;
+			border: 5px solid rgba(255, 255, 255, 0.2);
+			border-top: 5px solid #fff;
+			border-radius: 50%;
+			animation: spin 0.8s linear infinite;
+		}
+		@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+		/* نافذة الصورة بدون أزرار */
+		#custom-redeemed-pop {
+			display: none;
+			position: fixed;
+			top: 0; left: 0; width: 100%; height: 100%;
+			background: rgba(0, 0, 0, 0.75);
+			z-index: 100000;
+			justify-content: center;
+			align-items: center;
+			padding: 20px;
+			cursor: pointer;
+		}
+		.redeemed-box-img {
+			position: relative;
+			width: 100%;
+			max-width: 340px;
+			background-image: url('https://i.ibb.co/nNF6whmx/Picsart-26-09-29-21-29-57-823.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+			aspect-ratio: 420 / 320;
+		}
+	</style>
+</head>
+<body>
+
+<!-- شاشة التحميل -->
+<div id="custom-loading">
+	<div class="cod-spinner-box">
+		<div class="cod-spinner"></div>
+	</div>
+</div>
+
+<!-- نافذة الصورة بدون أزرار (بالضغط في أي مكان تختفي) -->
+<div id="custom-redeemed-pop" onclick="closePopup()">
+	<div class="redeemed-box-img"></div>
+</div>
+
+<div class="wrap test">
+	<!-- الشريط الجديد موضّع فوق خلفية الصفحة مباشرة -->
+	<div class="overlay-header-bar">
+		<img src="https://i.ibb.co/1fStfpFz/Picsart-26-10-01-18-38-44-737.jpg" alt="Call of Duty Header">
+	</div>
+
+	<div id="header"></div>
+	<div class="container">
+	    <div class="head pr">
+	      			<div class="logo"></div>
+			<h1>REDEMPTION <br/> CENTER</h1>
+        	<div class="code_ct">
+        		<ul class="code_list c">
+					<li>
+						<span class="desktop_label">UID</span>
+						<div class="input-field-wrapper">
+							<input id="F_UID" tabindex="1" type="number" placeholder="UID" class="input_text" />
+							<a href="javascript:;" class="icon_mark sp"><img src="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/CODM_UID.webp" id="uid-icon" alt="UID Icon"></a>
+						</div>
+					</li>
+					<li>
+						<span id="label_titlie" class="desktop_label label-titlie redeem_text">Redeem Code</span>
+						<div class="input-field-wrapper">
+							<input id="F_CDKEY" tabindex="2" type="text" placeholder="Redeem Code" class="input_text" />
+						</div>
+					</li>
+					<li class="verification_row">
+						<span id="label_vercode" class="desktop_label label_vercode">Verification</span>
+						<div class="input-field-wrapper">
+							<input id="F_VCODE" tabindex="3" type="text" placeholder="Verification Code" class="input_code" />
+							<a href="javascript:;" class="code_text">
+								<img id="val_code" src="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/code_img.png" width="138" height="52" alt="code" />
+							</a>
+							<a href="javascript:;" class="icon_break sp" id="refvc"><img src="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/CODM_Refresh.webp" alt="Refresh Icon" id="refresh-icon" /></a>
+						</div>
+					</li>
+				</ul>
+				<!-- زر SUBMIT -->
+				<a href="javascript:void(0)" tabindex="4" class="btn_yellow" id="label_submit" style="display: block; text-align: center; text-decoration: none;">SUBMIT</a>
+        	</div>
+			<div class="update-text">
+				<h2>Update Required to Redeem</h2>
+				<p>Check the App Store and update if prompted to avoid losing your code once entered</p>
+			</div>
+			<div class="codm-banner-container">
+				<div class="codm-banner">
+					<a href="http://store.callofdutymobile.com/product/codm?utm_source=activision&utm_medium=website&utm_campaign=codm-redemption-evergreen" target="_blank">
+						<div class="codm-banner-content">
+							<h2>Get the best deals on COD Points</h2>
+							<p>Check out the official Call of Duty: Mobile store and get bonus COD Points and discounts.</p>
+							<p id="banner-cta"><span>Buy Now</span></p>
+						</div>
+						<div class="codm-banner-img">
+							<img src="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/CODM_Crate_Banner_Crate1.webp" alt="banner" />
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="copyright">
+				<p>&copy;/TM/® 2025 Activision Publishing, Inc. <br/><br/></p>
+				<p>Codes redeemable on this Call of Duty: Mobile Redemption Center are valid only for users in territories in which Activision Publishing, Inc. is the publisher of Call of Duty: Mobile. Excludes Brunei, Cambodia, East Timor, Hong Kong, Indonesia, Laos, Macau, Mainland China, Malaysia, Myanmar, Philippines, Singapore, South Korea, Taiwan, Thailand, Vietnam and any regions or territories restricted by applicable laws.</p>
+			</div>
+	    </div>
+    </div>
+</div>
+<div id="footer"></div>
+
+<!-- السكربت -->
+<script>
+	$(document).ready(function() {
+		$("#label_submit").on("click", function(e) {
+			e.preventDefault();
+
+			// إظهار شاشة التحميل
+			$("#custom-loading").css("display", "flex");
+
+			// بعد 1.5 ثانية، إخفاء التحميل وإظهار نافذة الصورة
+			setTimeout(function() {
+				$("#custom-loading").hide();
+				$("#custom-redeemed-pop").css("display", "flex");
+			}, 1500);
+		});
+	});
+
+	function closePopup() {
+		$("#custom-redeemed-pop").hide();
+	}
+</script>
+</body>
+</html>
