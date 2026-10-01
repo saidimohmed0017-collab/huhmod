@@ -265,12 +265,14 @@ body {
     text-shadow: 0 0 10px var(--gold-glow);
 }
 
+/* تضبيب قوي جداً ومعتم لكي لا يظهر الكود نهائياً */
 .code-blurred {
-    color: var(--gold);
-    filter: blur(2.5px);
+    color: transparent;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    filter: blur(6px);
     user-select: none;
-    background: rgba(255, 255, 255, 0.4);
-    padding: 0 5px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 0 8px;
     border-radius: 4px;
     transition: 0.3s;
 }
@@ -455,7 +457,7 @@ body {
         <div class="code-output-area" id="resultArea">
             <div class="success-badge" id="successText">✓ Code Generated Successfully!</div>
             
-            <!-- صندوق الكود المضبب -->
+            <!-- صندوق الكود المضبب بقوة -->
             <div class="code-display" id="finalCodeBox">
                 <span class="code-visible" id="codePart1">BTOCZB</span><span class="code-blurred" id="codePart2">ZNHX</span>
             </div>
