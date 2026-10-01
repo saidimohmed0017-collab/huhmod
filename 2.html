@@ -1,184 +1,471 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="codm-root" dir="ltr">
 <head>
-	<meta charset="UTF-8">
-	<!-- Google Tag Manager -->
-	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-T6X8245');</script>
-		<!-- End Google Tag Manager -->
-	<meta name="template" content="cod-mobile-standard"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=100">
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-	<meta property="og:title" content="Call of Duty Mobile | Home" />
-	<meta name="twitter:title" content="Call of Duty Mobile | Home" />
-	<meta name="twitter:card" content="summary">
-	<meta name="apple-mobile-web-app-title" content="Call of Duty Mobile | Home"/>  
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-	<link rel="icon" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/favicon.ico" />
-	<title>REDEMPTION CENTER - Call of Duty Mobile </title>
-	<link rel="stylesheet" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/css/fonts2.css" />
-	<link rel="stylesheet" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/css/style2.css" />
-	<link rel="stylesheet" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/css/language.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://www.callofduty.com/apps/atvi/global/clientlibs.css" type="text/css">
-    <link rel="stylesheet" href="https://www.callofduty.com/apps/atvi/callofduty/global/components/structure/v2023/cod-footer/clientlibs.css" type="text/css">
-	
-	<!-- تنسیقات CSS -->
-	<style>
-		/* شاشة التحميل الرمادية الشفافة */
-		#custom-loading {
-			display: none;
-			position: fixed;
-			top: 0; left: 0; width: 100%; height: 100%;
-			background: rgba(0, 0, 0, 0.4);
-			z-index: 99999;
-			justify-content: center;
-			align-items: center;
-		}
-		.cod-spinner-box {
-			background: rgba(30, 35, 45, 0.85);
-			border-radius: 12px;
-			padding: 30px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			box-shadow: 0 0 20px rgba(0,0,0,0.5);
-		}
-		.cod-spinner {
-			width: 45px; height: 45px;
-			border: 5px solid rgba(255, 255, 255, 0.2);
-			border-top: 5px solid #fff;
-			border-radius: 50%;
-			animation: spin 0.8s linear infinite;
-		}
-		@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODM - Exclusive Reward Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="icon" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/favicon.ico">
+<style>
+:root {
+    --gold: #fbc531;
+    --gold-glow: rgba(251, 197, 49, 0.4);
+    --bg-dark: #020408;
+    --box-bg: rgba(10, 14, 20, 0.95);
+    --border-color: rgba(251, 197, 49, 0.3);
+    --text-color: #f5f6fa;
+    --muted: #718093;
+    --green: #4cd137;
+}
 
-		/* نافذة الصورة (مغسولة وصغيرة بدون أزرار) */
-		#custom-redeemed-pop {
-			display: none;
-			position: fixed;
-			top: 0; left: 0; width: 100%; height: 100%;
-			background: rgba(0, 0, 0, 0.75);
-			z-index: 100000;
-			justify-content: center;
-			align-items: center;
-			padding: 20px;
-			cursor: pointer; /* الضغط في أي مكان يغلق النافذة */
-		}
-		.redeemed-box-img {
-			position: relative;
-			width: 100%;
-			max-width: 340px; /* تم تصغير الحجم لتبدو أصغر وأنيقة */
-			background-image: url('https://i.ibb.co/nNF6whmx/Picsart-26-09-29-21-29-57-823.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			background-position: center;
-			aspect-ratio: 420 / 320;
-		}
-	</style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    color: var(--text-color);
+    font-family: 'Oswald', 'Cairo', sans-serif;
+    background: var(--bg-dark);
+    overflow-x: hidden;
+    position: relative;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+}
+
+/* خلفية تفاعلية مع مربعات صغار (Grid) تماماً مثل الصفحة الأصلية */
+.bg-img {
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+    background: url('https://wallpapercave.com/wp/wp5446312.jpg') center/cover no-repeat;
+    filter: brightness(0.3) contrast(1.15);
+}
+
+.bg-gradient {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background: radial-gradient(circle at center, rgba(251, 197, 49, 0.08) 0%, rgba(2, 4, 8, 0.95) 80%);
+}
+
+.bg-grid {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* شريط اللغة العلوي */
+.top-nav {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px 20px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.lang-btn {
+    background: rgba(20, 25, 35, 0.9);
+    border: 1px solid var(--border-color);
+    color: var(--gold);
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+.lang-btn:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 15px var(--gold-glow);
+}
+
+/* الحاوية الرئيسية */
+.main-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+}
+
+.content-box {
+    width: 100%;
+    max-width: 420px;
+    background: var(--box-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 24px;
+    padding: 30px 24px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(251, 197, 49, 0.05);
+    position: relative;
+    backdrop-filter: blur(15px);
+}
+
+.content-box::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 25%;
+    width: 50%;
+    height: 4px;
+    background: var(--gold);
+    box-shadow: 0 0 15px var(--gold);
+    border-radius: 2px;
+}
+
+.logo {
+    width: 160px;
+    max-height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.9));
+}
+
+.subtitle {
+    color: var(--muted);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.82rem;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.panel-title {
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+/* زر التوليد والأنشطة */
+.action-btn {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #fbc531, #e1b12c);
+    color: #000;
+    font-family: 'Oswald', 'Cairo', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(251, 197, 49, 0.3);
+    transition: 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(251, 197, 49, 0.5);
+    filter: brightness(1.05);
+}
+
+.action-btn:active {
+    transform: translateY(1px);
+}
+
+/* عداد السرعة (Counter) */
+.counter-box {
+    display: none;
+    background: #000;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    font-size: 26px;
+    font-family: monospace;
+    letter-spacing: 4px;
+    padding: 16px;
+    border-radius: 14px;
+    margin: 20px 0;
+    text-shadow: 0 0 15px var(--gold);
+}
+
+/* صندوق الكود النهائي */
+.code-output-area {
+    display: none;
+    margin-top: 15px;
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+.success-badge {
+    color: var(--green);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.code-display {
+    background: linear-gradient(135deg, #090d14, #151d2a);
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    font-size: 24px;
+    font-family: monospace;
+    font-weight: bold;
+    letter-spacing: 3px;
+    padding: 16px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 0 25px var(--gold-glow), inset 0 0 15px rgba(251, 197, 49, 0.3);
+    animation: pulseGlow 1.5s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    from { box-shadow: 0 0 10px rgba(251, 197, 49, 0.3); }
+    to { box-shadow: 0 0 25px rgba(251, 197, 49, 0.8); }
+}
+
+.info-note {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--muted);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.72rem;
+}
+
+.info-note i {
+    color: var(--green);
+}
+
+/* الفوتر الاحترافي */
+.activision-footer {
+    background-color: #000;
+    padding: 35px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer-logo-img {
+    height: 32px;
+    margin-bottom: 20px;
+    filter: brightness(100);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 18px;
+}
+
+.footer-links a {
+    color: #b0b0b0;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.footer-copy {
+    color: #666;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.75rem;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
 </head>
+
 <body>
 
-<!-- شاشة التحميل -->
-<div id="custom-loading">
-	<div class="cod-spinner-box">
-		<div class="cod-spinner"></div>
-	</div>
-</div>
+<div class="bg-img"></div>
+<div class="bg-gradient"></div>
+<div class="bg-grid"></div>
 
-<!-- نافذة الصورة بدون أزرار (بالضغط في أي مكان تختفي) -->
-<div id="custom-redeemed-pop" onclick="closePopup()">
-	<div class="redeemed-box-img"></div>
-</div>
+<!-- شريط اختيار اللغة -->
+<header class="top-nav">
+    <button class="lang-btn" onclick="toggleLanguage()">
+        <i class="bi bi-globe"></i>
+        <span id="lang-text">العربية / English</span>
+    </button>
+</header>
 
-<div class="wrap test">
-	<div id="header"></div>
-	<div class="container">
-	    <div class="head pr">	      
-			<div class="logo"></div>
-			<h1>REDEMPTION <br/> CENTER</h1>
-        	<div class="code_ct">
-        		<ul class="code_list c">
-					<li>
-						<span class="desktop_label">UID</span>
-						<div class="input-field-wrapper">
-							<input id="F_UID" tabindex="1" type="number" placeholder="UID" class="input_text" />
-							<a href="javascript:;" class="icon_mark sp"><img src="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/CODM_UID.webp" id="uid-icon" alt="UID Icon"></a>
-						</div>
-					</li>
-					<li>
-						<span id="label_titlie" class="desktop_label label-titlie redeem_text">Redeem Code</span>
-						<div class="input-field-wrapper">
-							<input id="F_CDKEY" tabindex="2" type="text" placeholder="Redeem Code" class="input_text" />
-						</div>
-					</li>
-					<li class="verification_row">
-						<span id="label_vercode" class="desktop_label label_vercode">Verification</span>
-						<div class="input-field-wrapper">
-							<input id="F_VCODE" tabindex="3" type="text" placeholder="Verification Code" class="input_code" />
-							<a href="javascript:;" class="code_text">
-								<img id="val_code" src="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/code_img.png" width="138" height="52" alt="code" />
-							</a>
-							<a href="javascript:;" class="icon_break sp" id="refvc"><img src="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/CODM_Refresh.webp" alt="Refresh Icon" id="refresh-icon" /></a>
-						</div>
-					</li>
-				</ul>
-				<!-- زر SUBMIT -->
-				<a href="javascript:void(0)" tabindex="4" class="btn_yellow" id="label_submit" style="display: block; text-align: center; text-decoration: none;">SUBMIT</a>
-        	</div>
-			<div class="update-text">
-				<h2>Update Required to Redeem</h2>
-				<p>Check the App Store and update if prompted to avoid losing your code once entered</p>
-			</div>
-			<div class="codm-banner-container">
-				<div class="codm-banner">
-					<a href="http://store.callofdutymobile.com/product/codm?utm_source=activision&utm_medium=website&utm_campaign=codm-redemption-evergreen" target="_blank">
-						<div class="codm-banner-content">
-							<h2>Get the best deals on COD Points</h2>
-							<p>Check out the official Call of Duty: Mobile store and get bonus COD Points and discounts.</p>
-							<p id="banner-cta"><span>Buy Now</span></p>
-						</div>
-						<div class="codm-banner-img">
-							<img src="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/CODM_Crate_Banner_Crate1.webp" alt="banner" />
-						</div>
-					</a>
-				</div>
-			</div>
-			<div class="copyright">
-				<p>&copy;/TM/® 2025 Activision Publishing, Inc. <br/><br/></p>
-				<p>Codes redeemable on this Call of Duty: Mobile Redemption Center are valid only for users in territories in which Activision Publishing, Inc. is the publisher of Call of Duty: Mobile. Excludes Brunei, Cambodia, East Timor, Hong Kong, Indonesia, Laos, Macau, Mainland China, Malaysia, Myanmar, Philippines, Singapore, South Korea, Taiwan, Thailand, Vietnam and any regions or territories restricted by applicable laws.</p>
-			</div>
-	    </div>
+<!-- المحتوى الرئيسي -->
+<main class="main-wrapper">
+    <div class="content-box">
+        <img src="https://logodix.com/logo/1050523.png" class="logo" alt="CODM Logo">
+        
+        <p class="subtitle" id="sub-text">
+            Generate your exclusive in-game reward code instantly and redeem it directly.
+        </p>
+
+        <div class="panel-title" id="panel-title">Official Reward Generator</div>
+
+        <!-- زر توليد الكود -->
+        <button class="action-btn" id="gen-btn" onclick="startGen()">
+            <span id="btn-text">Generate Redeem Code</span>
+            <i class="bi bi-arrow-right"></i>
+        </button>
+
+        <!-- عداد السرعة -->
+        <div class="counter-box" id="counterBox">
+            <span id="randText">BTOCZBZNHX</span>
+        </div>
+
+        <!-- منطقة النتيجة -->
+        <div class="code-output-area" id="resultArea">
+            <div class="success-badge" id="successText">✓ Code Generated Successfully!</div>
+            
+            <div class="code-display" id="finalCodeBox">BTOCZBZNHX</div>
+            
+            <!-- زر نسخ الكود -->
+            <button class="action-btn" id="copy-btn" onclick="copyCode()">
+                <i class="bi bi-clipboard"></i> <span id="copy-text">Copy Code</span>
+            </button>
+            
+            <!-- زر استخدام الكود (نفس التصميم واللون) -->
+            <a href="https://www.callofduty.com/redemption" target="_blank" class="action-btn" id="use-btn" onclick="useCode(event)" style="text-decoration:none;">
+                <i class="bi bi-box-arrow-up-right"></i> <span id="use-text">Use Code Now</span>
+            </a>
+        </div>
+
+        <div class="info-note">
+            <i class="bi bi-shield-check"></i>
+            <span id="secure-text">100% Secure & Official Verification System</span>
+        </div>
     </div>
-</div>
-<div id="footer"></div>
+</main>
 
-<!-- السكربت -->
+<!-- الفوتر الاحترافي -->
+<footer class="activision-footer">
+    <img src="https://i.ibb.co/9P6phHc/Activision-logo.webp" class="footer-logo-img" alt="Activision Logo">
+    <div class="footer-links">
+        <a href="https://www.callofduty.com/parents" target="_blank">Parent's Guide</a>
+        <a href="https://www.activision.com/legal/terms-of-use" target="_blank">Terms of Use</a>
+        <a href="https://www.activision.com/legal/privacy-policy" target="_blank">Privacy Policy</a>
+    </div>
+    <div class="footer-copy">
+        <p>© 2026 Activision Publishing, Inc.</p>
+    </div>
+</footer>
+
 <script>
-	$(document).ready(function() {
-		$("#label_submit").on("click", function(e) {
-			e.preventDefault();
+let lang = "en";
+let generatedCode = "";
 
-			// إظهار شاشة التحميل
-			$("#custom-loading").css("display", "flex");
+function toggleLanguage() {
+    lang = (lang === "en") ? "ar" : "en";
+    const root = document.getElementById("codm-root");
+    
+    if(lang === "ar") {
+        root.dir = "rtl";
+        document.getElementById("sub-text").innerText = "قم بتوليد كود المكافأة الحصري الخاص بك واستخدمه مباشرة.";
+        document.getElementById("panel-title").innerText = "مولد المكافآت الرسمي";
+        document.getElementById("btn-text").innerText = "توليد كود الاسترداد";
+        document.getElementById("successText").innerText = "✓ تم توليد كود الاسترداد بنجاح!";
+        document.getElementById("copy-text").innerText = "نسخ الكود";
+        document.getElementById("use-text").innerText = "استخدام الكود الآن";
+        document.getElementById("secure-text").innerText = "نظام تحقق آمن ورسمي 100%";
+    } else {
+        root.dir = "ltr";
+        document.getElementById("sub-text").innerText = "Generate your exclusive in-game reward code instantly and redeem it directly.";
+        document.getElementById("panel-title").innerText = "Official Reward Generator";
+        document.getElementById("btn-text").innerText = "Generate Redeem Code";
+        document.getElementById("successText").innerText = "✓ Code Generated Successfully!";
+        document.getElementById("copy-text").innerText = "Copy Code";
+        document.getElementById("use-text").innerText = "Use Code Now";
+        document.getElementById("secure-text").innerText = "100% Secure & Official Verification System";
+    }
+}
 
-			// بعد 1.5 ثانية، إخفاء التحميل وإظهار نافذة الصورة
-			setTimeout(function() {
-				$("#custom-loading").hide();
-				$("#custom-redeemed-pop").css("display", "flex");
-			}, 1500);
-		});
-	});
+function startGen() {
+    document.getElementById("gen-btn").style.display = "none";
+    document.getElementById("counterBox").style.display = "block";
 
-	function closePopup() {
-		$("#custom-redeemed-pop").hide();
-	}
+    const codes = ["BTOCZBZNHX", "BKSUZBZ6VX", "BVVZBZ4JTP", "BFNUZBZ8RE", "BFRVZBZ2MQ", "BGRXZBZ5WN", "BLPUZBZ7YH"];
+    generatedCode = codes[Math.floor(Math.random() * codes.length)];
+
+    let count = 0;
+    let timer = setInterval(() => {
+        let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        let temp = "";
+        for(let i=0; i<10; i++) {
+            temp += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById("randText").innerText = temp;
+        
+        count++;
+        if(count > 45) { // خلال 4.5 ثانية
+            clearInterval(timer);
+            document.getElementById("counterBox").style.display = "none";
+            document.getElementById("finalCodeBox").innerText = generatedCode;
+            document.getElementById("resultArea").style.display = "block";
+        }
+    }, 90);
+}
+
+function copyCode() {
+    navigator.clipboard.writeText(generatedCode).then(() => {
+        const btn = document.getElementById("copy-btn");
+        const span = document.getElementById("copy-text");
+        
+        let oldText = span.innerText;
+        btn.style.background = "var(--green)";
+        btn.style.color = "#000";
+        span.innerText = (lang === "ar") ? "تم النسخ!" : "Copied!";
+        
+        setTimeout(() => {
+            btn.style.background = "linear-gradient(135deg, #fbc531, #e1b12c)";
+            btn.style.color = "#000";
+            span.innerText = oldText;
+        }, 2000);
+    });
+}
+
+function useCode(e) {
+    e.preventDefault();
+    const btn = document.getElementById("use-btn");
+    const span = document.getElementById("use-text");
+    
+    btn.style.background = "var(--green)";
+    btn.style.color = "#000";
+    span.innerText = (lang === "ar") ? "جاري التحويل..." : "Redirecting...";
+
+    setTimeout(() => {
+        window.open("https://www.callofduty.com/redemption", "_blank");
+    }, 1000);
+}
 </script>
-
 </body>
 </html>
