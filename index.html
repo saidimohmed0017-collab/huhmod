@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" id="codm-root" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODM - Exclusive Reward Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="icon" href="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/favicon.ico">
+<style>
+:root {
+    --gold: #fbc531;
+    --gold-glow: rgba(251, 197, 49, 0.4);
+    --bg-dark: #020408;
+    --box-bg: rgba(10, 14, 20, 0.95);
+    --border-color: rgba(251, 197, 49, 0.3);
+    --text-color: #f5f6fa;
+    --muted: #718093;
+    --green: #4cd137;
+    --gray-btn: #353b48;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    color: var(--text-color);
+    font-family: 'Oswald', 'Cairo', sans-serif;
+    background: var(--bg-dark);
+    overflow-x: hidden;
+    position: relative;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+}
+
+/* خلفية تفاعلية مع مربعات صغار (Grid) */
+.bg-img {
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+    background: url('https://wallpapercave.com/wp/wp5446312.jpg') center/cover no-repeat;
+    filter: brightness(0.3) contrast(1.15);
+}
+
+.bg-gradient {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background: radial-gradient(circle at center, rgba(251, 197, 49, 0.08) 0%, rgba(2, 4, 8, 0.95) 80%);
+}
+
+.bg-grid {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* شريط اللغة العلوي */
+.top-nav {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px 20px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.lang-btn {
+    background: rgba(20, 25, 35, 0.9);
+    border: 1px solid var(--border-color);
+    color: var(--gold);
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+.lang-btn:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 15px var(--gold-glow);
+}
+
+/* الحاوية الرئيسية */
+.main-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+}
+
+.content-box {
+    width: 100%;
+    max-width: 420px;
+    background: var(--box-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 24px;
+    padding: 30px 24px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(251, 197, 49, 0.05);
+    position: relative;
+    backdrop-filter: blur(15px);
+}
+
+.content-box::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 25%;
+    width: 50%;
+    height: 4px;
+    background: var(--gold);
+    box-shadow: 0 0 15px var(--gold);
+    border-radius: 2px;
+}
+
+.logo {
+    width: 160px;
+    max-height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.9));
+}
+
+.subtitle {
+    color: var(--muted);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.82rem;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.panel-title {
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+/* زر التوليد والأزرار العامة */
+.action-btn {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #fbc531, #e1b12c);
+    color: #000;
+    font-family: 'Oswald', 'Cairo', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(251, 197, 49, 0.3);
+    transition: 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(251, 197, 49, 0.5);
+    filter: brightness(1.05);
+}
+
+.action-btn:active {
+    transform: translateY(1px);
+}
+
+/* الأزرار المعطلة (الرمادية) */
+.action-btn.disabled {
+    background: var(--gray-btn) !important;
+    color: #a4b0be !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    transform: none !important;
+    filter: none !important;
+}
+
+/* زر إظهار الكود المخفي (مميز يلفت الانتباه) */
+.unlock-btn {
+    background: linear-gradient(135deg, #ff4757, #ff6b81) !important;
+    color: #fff !important;
+    box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4) !important;
+    animation: pulseUnlock 1.5s infinite alternate;
+}
+
+@keyframes pulseUnlock {
+    from { box-shadow: 0 0 10px rgba(255, 71, 87, 0.4); }
+    to { box-shadow: 0 0 25px rgba(255, 71, 87, 0.8); }
+}
+
+/* عداد السرعة (Counter) */
+.counter-box {
+    display: none;
+    background: #000;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    font-size: 26px;
+    font-family: monospace;
+    letter-spacing: 4px;
+    padding: 16px;
+    border-radius: 14px;
+    margin: 20px 0;
+    text-shadow: 0 0 15px var(--gold);
+}
+
+/* صندوق الكود النهائي */
+.code-output-area {
+    display: none;
+    margin-top: 15px;
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+.success-badge {
+    color: var(--green);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.code-display {
+    background: linear-gradient(135deg, #090d14, #151d2a);
+    border: 2px solid var(--gold);
+    font-size: 24px;
+    font-family: monospace;
+    font-weight: bold;
+    letter-spacing: 3px;
+    padding: 16px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.code-visible {
+    color: var(--gold);
+    text-shadow: 0 0 10px var(--gold-glow);
+}
+
+.code-blurred {
+    color: var(--gold);
+    filter: blur(2.5px);
+    user-select: none;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 0 5px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+/* عنوان قسم العروض الجديد */
+.offers-heading {
+    display: none;
+    color: var(--gold);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: center;
+    background: rgba(251, 197, 49, 0.08);
+    border: 1px dashed var(--gold);
+    padding: 10px;
+    border-radius: 10px;
+    animation: fadeInUp 0.3s ease;
+}
+
+/* قائمة العروض (Offers Locker) */
+#offers-container {
+    display: none;
+    margin-top: 15px;
+    text-align: left;
+    animation: fadeInUp 0.4s ease;
+}
+
+#html-root[dir="rtl"] #offers-container {
+    text-align: right;
+}
+
+.offer-card {
+    background: #121824;
+    border: 1px solid #2d3748;
+    border-left: 4px solid var(--gold);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#html-root[dir="rtl"] .offer-card {
+    border-left: 1px solid #2d3748;
+    border-right: 4px solid var(--gold);
+}
+
+.offer-title {
+    color: #fff;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.offer-btn {
+    background: var(--gold);
+    color: #000;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: 900;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.75rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.offer-btn:hover {
+    filter: brightness(1.1);
+}
+
+.info-note {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--muted);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.72rem;
+}
+
+.info-note i {
+    color: var(--green);
+}
+
+/* الفوتر الاحترافي */
+.activision-footer {
+    background-color: #000;
+    padding: 35px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer-logo-img {
+    height: 32px;
+    margin-bottom: 20px;
+    filter: brightness(100);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 18px;
+}
+
+.footer-links a {
+    color: #b0b0b0;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.footer-copy {
+    color: #666;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.75rem;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-img"></div>
+<div class="bg-gradient"></div>
+<div class="bg-grid"></div>
+
+<!-- شريط اختيار اللغة -->
+<header class="top-nav">
+    <button class="lang-btn" onclick="toggleLanguage()">
+        <i class="bi bi-globe"></i>
+        <span id="lang-text">العربية / English</span>
+    </button>
+</header>
+
+<!-- المحتوى الرئيسي -->
+<main class="main-wrapper">
+    <div class="content-box">
+        <img src="https://logodix.com/logo/1050523.png" class="logo" alt="CODM Logo">
+        
+        <p class="subtitle" id="sub-text">
+            Generate your exclusive in-game reward code instantly and redeem it directly.
+        </p>
+
+        <div class="panel-title" id="panel-title">Official Reward Generator</div>
+
+        <!-- زر توليد الكود -->
+        <button class="action-btn" id="gen-btn" onclick="startGen()">
+            <span id="btn-text">Generate Redeem Code</span>
+            <i class="bi bi-arrow-right"></i>
+        </button>
+
+        <!-- عداد السرعة -->
+        <div class="counter-box" id="counterBox">
+            <span id="randText">BTOCZBZNHX</span>
+        </div>
+
+        <!-- منطقة النتيجة -->
+        <div class="code-output-area" id="resultArea">
+            <div class="success-badge" id="successText">✓ Code Generated Successfully!</div>
+            
+            <!-- صندوق الكود المضبب -->
+            <div class="code-display" id="finalCodeBox">
+                <span class="code-visible" id="codePart1">BTOCZB</span><span class="code-blurred" id="codePart2">ZNHX</span>
+            </div>
+            
+            <!-- زر إظهار الكود المخفي -->
+            <button class="action-btn unlock-btn" id="unlock-btn" onclick="loadOffers()">
+                <i class="bi bi-unlock-fill"></i> <span id="unlock-text">Unlock Full Code</span>
+            </button>
+
+            <!-- زر نسخ الكود (مغلق بالرمادي تحت الزر المخفي) -->
+            <button class="action-btn disabled" id="copy-btn" disabled>
+                <i class="bi bi-clipboard"></i> <span id="copy-text">Copy Code (Locked)</span>
+            </button>
+            
+            <!-- زر استخدام الكود (مغلق بالرمادي) -->
+            <button class="action-btn disabled" id="use-btn" disabled>
+                <i class="bi bi-box-arrow-up-right"></i> <span id="use-text">Use Code Now (Locked)</span>
+            </button>
+
+            <!-- عنوان يجب إكمال العروض -->
+            <div class="offers-heading" id="offersHeading">
+                ⚠️ Complete one offer below to reveal your full code!
+            </div>
+
+            <!-- حاوية عروض الـ CPA -->
+            <div id="offers-container">
+                <div style="color:var(--muted); font-family:'Cairo',sans-serif; font-size:0.75rem; text-align:center; padding: 10px;">Loading offers...</div>
+            </div>
+        </div>
+
+        <div class="info-note">
+            <i class="bi bi-shield-check"></i>
+            <span id="secure-text">100% Secure & Official Verification System</span>
+        </div>
+    </div>
+</main>
+
+<!-- الفوتر الاحترافي -->
+<footer class="activision-footer">
+    <img src="https://i.ibb.co/9P6phHc/Activision-logo.webp" class="footer-logo-img" alt="Activision Logo">
+    <div class="footer-links">
+        <a href="https://www.callofduty.com/parents" target="_blank">Parent's Guide</a>
+        <a href="https://www.activision.com/legal/terms-of-use" target="_blank">Terms of Use</a>
+        <a href="https://www.activision.com/legal/privacy-policy" target="_blank">Privacy Policy</a>
+    </div>
+    <div class="footer-copy">
+        <p>© 2026 Activision Publishing, Inc.</p>
+    </div>
+</footer>
+
+<script>
+let lang = "en";
+
+function toggleLanguage() {
+    lang = (lang === "en") ? "ar" : "en";
+    const root = document.getElementById("codm-root");
+    
+    if(lang === "ar") {
+        root.dir = "rtl";
+        document.getElementById("sub-text").innerText = "قم بتوليد كود المكافأة الحصري الخاص بك واستخدمه مباشرة.";
+        document.getElementById("panel-title").innerText = "مولد المكافآت الرسمي";
+        document.getElementById("btn-text").innerText = "توليد كود الاسترداد";
+        document.getElementById("successText").innerText = "✓ تم توليد كود الاسترداد بنجاح!";
+        document.getElementById("unlock-text").innerText = "إظهار الكود المخفي";
+        document.getElementById("copy-text").innerText = "نسخ الكود (مغلق)";
+        document.getElementById("use-text").innerText = "استخدام الكود (مغلق)";
+        document.getElementById("offersHeading").innerText = "⚠️ يجب إكمال أحد العروض أدناه لإظهار الكود كاملاً!";
+        document.getElementById("secure-text").innerText = "نظام تحقق آمن ورسمي 100%";
+    } else {
+        root.dir = "ltr";
+        document.getElementById("sub-text").innerText = "Generate your exclusive in-game reward code instantly and redeem it directly.";
+        document.getElementById("panel-title").innerText = "Official Reward Generator";
+        document.getElementById("btn-text").innerText = "Generate Redeem Code";
+        document.getElementById("successText").innerText = "✓ Code Generated Successfully!";
+        document.getElementById("unlock-text").innerText = "Unlock Full Code";
+        document.getElementById("copy-text").innerText = "Copy Code (Locked)";
+        document.getElementById("use-text").innerText = "Use Code Now (Locked)";
+        document.getElementById("offersHeading").innerText = "⚠️ Complete one offer below to reveal your full code!";
+        document.getElementById("secure-text").innerText = "100% Secure & Official Verification System";
+    }
+}
+
+function startGen() {
+    document.getElementById("gen-btn").style.display = "none";
+    document.getElementById("counterBox").style.display = "block";
+
+    const codes = ["BTOCZBZNHX", "BKSUZBZ6VX", "BVVZBZ4JTP", "BFNUZBZ8RE", "BFRVZBZ2MQ", "BGRXZBZ5WN", "BLPUZBZ7YH"];
+    let chosen = codes[Math.floor(Math.random() * codes.length)];
+    
+    document.getElementById("codePart1").innerText = chosen.substring(0, 6);
+    document.getElementById("codePart2").innerText = chosen.substring(6);
+
+    let count = 0;
+    let timer = setInterval(() => {
+        let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        let temp = "";
+        for(let i=0; i<10; i++) {
+            temp += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById("randText").innerText = temp;
+        
+        count++;
+        if(count > 45) { // خلال 4.5 ثانية
+            clearInterval(timer);
+            document.getElementById("counterBox").style.display = "none";
+            document.getElementById("resultArea").style.display = "block";
+        }
+    }, 90);
+}
+
+/* عند الضغط على زر إظهار الكود المخفي يتم إخفاء الكود والأزرار وإظهار العروض */
+function loadOffers() {
+    document.getElementById('successText').style.display = "none";
+    document.getElementById('finalCodeBox').style.display = "none";
+    document.getElementById('unlock-btn').style.display = "none";
+    document.getElementById('copy-btn').style.display = "none";
+    document.getElementById('use-btn').style.display = "none";
+    
+    document.getElementById('offersHeading').style.display = "block";
+    const container = document.getElementById('offers-container');
+    container.style.display = "block";
+    
+    $.getJSON("https://dtvpp42hfuyb2.cloudfront.net/public/offers/feed.php?user_id=783703&api_key=7e858a7430d573266406c99f87838da4&s1=&s2=&callback=?", function(data) {
+        container.innerHTML = "";
+        data.slice(0, 3).forEach(offer => {
+            container.innerHTML += `
+                <div class="offer-card">
+                    <div class="offer-title" title="${offer.anchor}">${offer.anchor}</div>
+                    <a href="${offer.url}" target="_blank" class="offer-btn">Start</a>
+                </div>`;
+        });
+    }).fail(function() {
+        container.innerHTML = "<div style='color:#ff334b; font-family:Cairo; font-size:0.75rem; text-align:center;'>Failed to load offers. Please try again.</div>";
+    });
+}
+</script>
+</body>
+</html>
