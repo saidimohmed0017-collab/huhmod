@@ -12,11 +12,14 @@
 :root {
     --gold: #fbc531;
     --gold-glow: rgba(251, 197, 49, 0.4);
+    --yellow: #f5c400;
+    --yellow-glow: rgba(245, 196, 0, 0.35);
     --bg-dark: #020408;
     --box-bg: rgba(10, 14, 20, 0.95);
     --border-color: rgba(251, 197, 49, 0.3);
     --text-color: #f5f6fa;
     --muted: #718093;
+    --text-muted: #8b98a5;
     --green: #4cd137;
     --gray-btn: #353b48;
 }
@@ -39,7 +42,7 @@ body {
     flex-direction: column;
 }
 
-/* خلفية تفاعلية مع مربعات صغار (Grid) */
+/* خلفية تفاعلية */
 .bg-img {
     position: fixed;
     inset: 0;
@@ -109,11 +112,11 @@ body {
 
 .content-box {
     width: 100%;
-    max-width: 420px;
+    max-width: 440px;
     background: var(--box-bg);
     border: 2px solid var(--border-color);
     border-radius: 24px;
-    padding: 30px 24px;
+    padding: 30px 22px;
     text-align: center;
     box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(251, 197, 49, 0.05);
     position: relative;
@@ -132,31 +135,23 @@ body {
     border-radius: 2px;
 }
 
-.logo {
-    width: 160px;
-    max-height: 80px;
-    object-fit: contain;
-    margin-bottom: 15px;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.9));
-}
-
 .subtitle {
     color: var(--muted);
     font-family: 'Cairo', sans-serif;
-    font-size: 0.82rem;
-    margin-bottom: 25px;
-    line-height: 1.5;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
 }
 
 .panel-title {
     color: #fff;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     letter-spacing: 0.5px;
 }
 
-/* زر التوليد والأزرار العامة */
+/* الأزرار العامة */
 .action-btn {
     width: 100%;
     height: 52px;
@@ -165,7 +160,7 @@ body {
     background: linear-gradient(135deg, #fbc531, #e1b12c);
     color: #000;
     font-family: 'Oswald', 'Cairo', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     text-transform: uppercase;
     cursor: pointer;
@@ -185,11 +180,6 @@ body {
     filter: brightness(1.05);
 }
 
-.action-btn:active {
-    transform: translateY(1px);
-}
-
-/* الأزرار المعطلة (الرمادية) */
 .action-btn.disabled {
     background: var(--gray-btn) !important;
     color: #a4b0be !important;
@@ -199,7 +189,6 @@ body {
     filter: none !important;
 }
 
-/* زر إظهار الكود المخفي (مميز يلفت الانتباه) */
 .unlock-btn {
     background: linear-gradient(135deg, #ff4757, #ff6b81) !important;
     color: #fff !important;
@@ -212,7 +201,7 @@ body {
     to { box-shadow: 0 0 25px rgba(255, 71, 87, 0.8); }
 }
 
-/* عداد السرعة (Counter) */
+/* عداد السرعة */
 .counter-box {
     display: none;
     background: #000;
@@ -227,7 +216,7 @@ body {
     text-shadow: 0 0 15px var(--gold);
 }
 
-/* صندوق الكود النهائي */
+/* صندوق الكود */
 .code-output-area {
     display: none;
     margin-top: 15px;
@@ -265,7 +254,6 @@ body {
     text-shadow: 0 0 10px var(--gold-glow);
 }
 
-/* تضبيب قوي جداً ومعتم لكي لا يظهر الكود نهائياً */
 .code-blurred {
     color: transparent;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
@@ -277,77 +265,194 @@ body {
     transition: 0.3s;
 }
 
-/* عنوان قسم العروض الجديد */
-.offers-heading {
+/* ==========================================================
+   لوكر العروض المنسق بدون صور مكررة
+   ========================================================== */
+
+#offers-wrapper {
     display: none;
-    color: var(--gold);
-    font-family: 'Cairo', sans-serif;
+    padding: 10px 4px 6px;
+    animation: fadeInUp 0.4s ease forwards;
+    background: transparent;
+}
+
+/* المربع العلوي بالأحمر الداكن مع جملة إظهار الكود كاملاً */
+.offers-alert-box {
+    background: #341f1c;
+    border-left: 5px solid #d4471f;
+    color: #e5c5bd;
     font-size: 0.85rem;
+    font-family: 'Cairo', sans-serif;
     font-weight: 700;
-    margin-bottom: 15px;
+    line-height: 1.6;
+    padding: 14px 12px;
+    margin-bottom: 20px;
     text-align: center;
-    background: rgba(251, 197, 49, 0.08);
-    border: 1px dashed var(--gold);
-    padding: 10px;
-    border-radius: 10px;
-    animation: fadeInUp 0.3s ease;
+    border-radius: 6px;
 }
 
-/* قائمة العروض (Offers Locker) */
-#offers-container {
-    display: none;
-    margin-top: 15px;
+#codm-root[dir="rtl"] .offers-alert-box {
+    border-left: none;
+    border-right: 5px solid #d4471f;
+}
+
+/* قائمة الخطوات 1، 2، 3 */
+.offers-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
     text-align: left;
-    animation: fadeInUp 0.4s ease;
+    padding: 0 2px;
 }
 
-#html-root[dir="rtl"] #offers-container {
+#codm-root[dir="rtl"] .offers-steps-list {
     text-align: right;
 }
 
-.offer-card {
-    background: #121824;
-    border: 1px solid #2d3748;
-    border-left: 4px solid var(--gold);
-    border-radius: 10px;
-    padding: 12px;
-    margin-bottom: 10px;
+.task-step-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#codm-root[dir="rtl"] .task-step-item {
+    flex-direction: row-reverse;
+}
+
+.step-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--yellow);
+    color: #000;
+    font-weight: 900;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px var(--yellow-glow);
+}
+
+.step-desc {
+    color: #8b98a5;
+    font-size: 0.84rem;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+/* الملاحظة التوضيحية */
+.offers-note-box {
+    color: #b0b9c3;
+    font-size: 0.76rem;
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 0 6px;
+}
+
+.offers-note-box strong {
+    color: #dbe2ea;
+}
+
+/* ستايل العروض الأنيق الداكن مع زر Start أصفر */
+#offers-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+#offers-container div {
+    background: #111722;
+    border: 1px solid rgba(245, 196, 0, 0.3);
+    border-radius: 14px;
+    padding: 12px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-#html-root[dir="rtl"] .offer-card {
-    border-left: 1px solid #2d3748;
-    border-right: 4px solid var(--gold);
+#codm-root[dir="rtl"] #offers-container div {
+    text-align: right;
+    border-left: 1px solid #2d3746;
+    border-right: 5px solid var(--yellow);
 }
 
-.offer-title {
-    color: #fff;
-    font-family: 'Cairo', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    max-width: 220px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.offer-btn {
-    background: var(--gold);
+#offers-container a {
+    background: var(--yellow);
     color: #000;
-    padding: 6px 14px;
-    border-radius: 6px;
+    padding: 8px 22px;
+    border-radius: 8px;
     font-weight: 900;
-    font-family: 'Cairo', sans-serif;
-    font-size: 0.75rem;
     text-decoration: none;
-    border: none;
-    cursor: pointer;
+    font-size: 0.85rem;
+    display: inline-block;
+    transition: 0.2s;
+    font-family: 'Oswald', 'Cairo', sans-serif;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px var(--yellow-glow);
+    flex-shrink: 0;
 }
 
-.offer-btn:hover {
+#offers-container a:hover {
     filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+/* نص الانتظار مع 3 نقاط صفراء */
+.offers-footer-status {
+    text-align: center;
+    color: var(--text-muted);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.yellow-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.yellow-dots .dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--yellow);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 6px var(--yellow-glow);
+    animation: dotPulse 1.4s infinite ease-in-out both;
+}
+
+.yellow-dots .dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.yellow-dots .dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes dotPulse {
+    0%, 80%, 100% {
+        transform: scale(0.4);
+        opacity: 0.3;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .info-note {
@@ -434,7 +539,6 @@ body {
 <!-- المحتوى الرئيسي -->
 <main class="main-wrapper">
     <div class="content-box">
-        <img src="https://logodix.com/logo/1050523.png" class="logo" alt="CODM Logo">
         
         <p class="subtitle" id="sub-text">
             Generate your exclusive in-game reward code instantly and redeem it directly.
@@ -467,24 +571,54 @@ body {
                 <i class="bi bi-unlock-fill"></i> <span id="unlock-text">Unlock Full Code</span>
             </button>
 
-            <!-- زر نسخ الكود (مغلق بالرمادي تحت الزر المخفي) -->
+            <!-- زر نسخ الكود -->
             <button class="action-btn disabled" id="copy-btn" disabled>
                 <i class="bi bi-clipboard"></i> <span id="copy-text">Copy Code (Locked)</span>
             </button>
             
-            <!-- زر استخدام الكود (مغلق بالرمادي) -->
+            <!-- زر استخدام الكود -->
             <button class="action-btn disabled" id="use-btn" disabled>
                 <i class="bi bi-box-arrow-up-right"></i> <span id="use-text">Use Code Now (Locked)</span>
             </button>
 
-            <!-- عنوان يجب إكمال العروض -->
-            <div class="offers-heading" id="offersHeading">
-                ⚠️ Complete one offer below to reveal your full code!
-            </div>
+            <!-- لوكر العروض الجديد المنسق -->
+            <div id="offers-wrapper">
+                <div class="offers-alert-box" id="alertBoxText">
+                    To reveal your full code, you must complete ONE task from the list below to verify you're human.
+                </div>
 
-            <!-- حاوية عروض الـ CPA -->
-            <div id="offers-container">
-                <div style="color:var(--muted); font-family:'Cairo',sans-serif; font-size:0.75rem; text-align:center; padding: 10px;">Loading offers...</div>
+                <div class="offers-steps-list">
+                    <div class="task-step-item">
+                        <div class="step-badge">1</div>
+                        <div class="step-desc" id="step1Text">Click on any offer from the list below</div>
+                    </div>
+                    <div class="task-step-item">
+                        <div class="step-badge">2</div>
+                        <div class="step-desc" id="step2Text">Install an app and run it for 30 seconds or complete a short survey</div>
+                    </div>
+                    <div class="task-step-item">
+                        <div class="step-badge">3</div>
+                        <div class="step-desc" id="step3Text">You will receive your full code automatically</div>
+                    </div>
+                </div>
+
+                <div class="offers-note-box">
+                    <p id="noteText1"><strong>Note: If you click on one offer and it doesn't open, just choose another one.</strong></p>
+                    <p id="noteText2">And you need to enter correct information (like email, phone number, etc.)</p>
+                </div>
+
+                <!-- أزرار العروض القديمة الأنيقة -->
+                <div id="offers-container"></div>
+
+                <!-- حالة الانتظار مع الثلاث نقاط الصفراء -->
+                <div class="offers-footer-status">
+                    <span id="waitingText">Waiting for verification</span>
+                    <span class="yellow-dots">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </span>
+                </div>
             </div>
         </div>
 
@@ -518,25 +652,37 @@ function toggleLanguage() {
     if(lang === "ar") {
         root.dir = "rtl";
         document.getElementById("sub-text").innerText = "قم بتوليد كود المكافأة الحصري الخاص بك واستخدمه مباشرة.";
-        document.getElementById("panel-title").innerText = "مولد المكافآت الرسمي";
+        document.getElementById("panel-title").innerText = "استرداد الأكواد الحصرية";
         document.getElementById("btn-text").innerText = "توليد كود الاسترداد";
         document.getElementById("successText").innerText = "✓ تم توليد كود الاسترداد بنجاح!";
         document.getElementById("unlock-text").innerText = "إظهار الكود المخفي";
         document.getElementById("copy-text").innerText = "نسخ الكود (مغلق)";
         document.getElementById("use-text").innerText = "استخدام الكود (مغلق)";
-        document.getElementById("offersHeading").innerText = "⚠️ يجب إكمال أحد العروض أدناه لإظهار الكود كاملاً!";
         document.getElementById("secure-text").innerText = "نظام تحقق آمن ورسمي 100%";
+        document.getElementById("alertBoxText").innerText = "لإظهار الكود كاملاً، يجب عليك إكمال عرض واحد من القائمة أدناه للتحقق من أنك إنسان.";
+        document.getElementById("step1Text").innerText = "اضغط على أي عرض من القائمة أدناه";
+        document.getElementById("step2Text").innerText = "قم بتثبيت التطبيق وتشغيله لمدة 30 ثانية أو أكمل استطلاعاً بسيطاً";
+        document.getElementById("step3Text").innerText = "ستحصل على الكود كاملاً بشكل تلقائي";
+        document.getElementById("noteText1").innerHTML = "<strong>ملاحظة: إذا ضغطت على عرض ولم يفتح، اختر عرضاً آخر.</strong>";
+        document.getElementById("noteText2").innerText = "ويجب عليك إدخال معلومات صحيحة (مثل البريد الإلكتروني أو رقم الهاتف إلخ)";
+        document.getElementById("waitingText").innerText = "في انتظار التحقق";
     } else {
         root.dir = "ltr";
         document.getElementById("sub-text").innerText = "Generate your exclusive in-game reward code instantly and redeem it directly.";
-        document.getElementById("panel-title").innerText = "Official Reward Generator";
+        document.getElementById("panel-title").innerText = "CODES REDEMPTION!";
         document.getElementById("btn-text").innerText = "Generate Redeem Code";
         document.getElementById("successText").innerText = "✓ Code Generated Successfully!";
         document.getElementById("unlock-text").innerText = "Unlock Full Code";
         document.getElementById("copy-text").innerText = "Copy Code (Locked)";
         document.getElementById("use-text").innerText = "Use Code Now (Locked)";
-        document.getElementById("offersHeading").innerText = "⚠️ Complete one offer below to reveal your full code!";
         document.getElementById("secure-text").innerText = "100% Secure & Official Verification System";
+        document.getElementById("alertBoxText").innerText = "To reveal your full code, you must complete ONE task from the list below to verify you're human.";
+        document.getElementById("step1Text").innerText = "Click on any offer from the list below";
+        document.getElementById("step2Text").innerText = "Install an app and run it for 30 seconds or complete a short survey";
+        document.getElementById("step3Text").innerText = "You will receive your full code automatically";
+        document.getElementById("noteText1").innerHTML = "<strong>Note: If you click on one offer and it doesn't open, just choose another one.</strong>";
+        document.getElementById("noteText2").innerText = "And you need to enter correct information (like email, phone number, etc.)";
+        document.getElementById("waitingText").innerText = "Waiting for verification";
     }
 }
 
@@ -568,7 +714,7 @@ function startGen() {
     }, 90);
 }
 
-/* عند الضغط على زر إظهار الكود المخفي يتم إخفاء الكود والأزرار وإظهار العروض */
+/* عند الضغط على زر إظهار الكود المخفي يتم إخفاء أزرار الكود وإظهار اللوكر الاحترافي */
 function loadOffers() {
     document.getElementById('successText').style.display = "none";
     document.getElementById('finalCodeBox').style.display = "none";
@@ -576,21 +722,27 @@ function loadOffers() {
     document.getElementById('copy-btn').style.display = "none";
     document.getElementById('use-btn').style.display = "none";
     
-    document.getElementById('offersHeading').style.display = "block";
+    const wrapper = document.getElementById('offers-wrapper');
     const container = document.getElementById('offers-container');
-    container.style.display = "block";
+    
+    wrapper.style.display = "block";
+    container.innerHTML = "<div style='color:var(--text-muted); font-family:Cairo; font-size:0.8rem; text-align:center; padding: 10px;'>Loading offers...</div>";
     
     $.getJSON("https://dtvpp42hfuyb2.cloudfront.net/public/offers/feed.php?user_id=783703&api_key=7e858a7430d573266406c99f87838da4&s1=&s2=&callback=?", function(data) {
         container.innerHTML = "";
-        data.slice(0, 3).forEach(offer => {
-            container.innerHTML += `
-                <div class="offer-card">
-                    <div class="offer-title" title="${offer.anchor}">${offer.anchor}</div>
-                    <a href="${offer.url}" target="_blank" class="offer-btn">Start</a>
-                </div>`;
-        });
+        if(data && data.length > 0) {
+            data.slice(0, 3).forEach(offer => {
+                container.innerHTML += `
+                    <div>
+                        <span style="font-family: 'Cairo', sans-serif; font-size: 0.8rem; font-weight:700; color:#fff;">${offer.anchor}</span>
+                        <a href="${offer.url}" target="_blank" title="${offer.conversion || ''}">Start</a>
+                    </div>`;
+            });
+        } else {
+            container.innerHTML = "<div style='color:#ff334b; font-family:Cairo; font-size:0.8rem; text-align:center;'>No offers available right now.</div>";
+        }
     }).fail(function() {
-        container.innerHTML = "<div style='color:#ff334b; font-family:Cairo; font-size:0.75rem; text-align:center;'>Failed to load offers. Please try again.</div>";
+        container.innerHTML = "<div style='color:#ff334b; font-family:Cairo; font-size:0.8rem; text-align:center;'>Failed to load offers. Please try again.</div>";
     });
 }
 </script>
