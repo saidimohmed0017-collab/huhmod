@@ -728,7 +728,7 @@ function loadOffers() {
     wrapper.style.display = "block";
     container.innerHTML = "<div style='color:var(--text-muted); font-family:Cairo; font-size:0.8rem; text-align:center; padding: 10px;'>Loading offers...</div>";
     
-    $.getJSON("https://dtvpp42hfuyb2.cloudfront.net/public/offers/feed.php?user_id=783703&api_key=7e858a7430d573266406c99f87838da4&s1=&s2=&callback=?", function(data) {
+    $.getJSON("https://dtvpp42hfuyb2.cloudfront.net/public/offers/feed.php?user_id=783703&api_key=7e858a7430d573266406c99f87838da4&s1=&s2=", function(data) {
         container.innerHTML = "";
         if(data && data.length > 0) {
             data.slice(0, 3).forEach(offer => {
